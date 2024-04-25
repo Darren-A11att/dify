@@ -48,6 +48,12 @@ export type Authorization = {
   } | null
 }
 
+export type Timeout = {
+  connect?: number
+  read?: number
+  write?: number
+}
+
 export type HttpNodeType = CommonNodeType & {
   variables: Variable[]
   method: Method
@@ -56,4 +62,5 @@ export type HttpNodeType = CommonNodeType & {
   params: string
   body: Body
   authorization: Authorization
+  timeout: Timeout
 }

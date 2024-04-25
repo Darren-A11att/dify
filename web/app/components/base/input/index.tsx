@@ -14,6 +14,9 @@ type InputProps = {
   type?: string
   showPrefix?: React.ReactNode
   prefixIcon?: React.ReactNode
+  readOnly?: boolean
+  min?: number
+  max?: number
 }
 
 const GlassIcon = ({ className }: SVGProps<SVGElement>) => (
@@ -22,7 +25,7 @@ const GlassIcon = ({ className }: SVGProps<SVGElement>) => (
   </svg>
 )
 
-const Input = ({ value, defaultValue, onChange, className = '', wrapperClassName = '', placeholder, type, showPrefix, prefixIcon }: InputProps) => {
+const Input = ({ value, defaultValue, onChange, className = '', wrapperClassName = '', placeholder, type, showPrefix, prefixIcon, min, max, readOnly }: InputProps) => {
   const [localValue, setLocalValue] = useState(value ?? defaultValue)
   const { t } = useTranslation()
   return (
@@ -31,6 +34,9 @@ const Input = ({ value, defaultValue, onChange, className = '', wrapperClassName
       <input
         type={type ?? 'text'}
         className={`${s.input} ${showPrefix ? '!pl-7' : ''} ${className}`}
+        readOnly={!!readOnly}
+        min={min}
+        max={max}
         placeholder={placeholder ?? (showPrefix ? t('common.operation.search') ?? '' : 'please input')}
         value={localValue}
         onChange={(e) => {
