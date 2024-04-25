@@ -249,6 +249,15 @@ const translation = {
         'header': 'Header',
       },
       insertVarPlaceholder: 'type \'/\' to insert variable',
+      timeout: {
+        title: 'Timeout',
+        connectLabel: 'Connect Timeout',
+        connectPlaceholder: 'Enter connect timeout in seconds',
+        readLabel: 'Read Timeout',
+        readPlaceholder: 'Enter read timeout in seconds',
+        writeLabel: 'Write Timeout',
+        writePlaceholder: 'Enter write timeout in seconds',
+      },
     },
     code: {
       inputVars: 'Input Variables',

@@ -4,7 +4,7 @@ import { useBoolean } from 'ahooks'
 import useVarList from '../_base/hooks/use-var-list'
 import { VarType } from '../../types'
 import type { Var } from '../../types'
-import type { Authorization, Body, HttpNodeType, Method } from './types'
+import type { Authorization, Body, HttpNodeType, Method, Timeout } from './types'
 import useKeyValueList from './hooks/use-key-value-list'
 import useNodeCrud from '@/app/components/workflow/nodes/_base/hooks/use-node-crud'
 import useOneStepRun from '@/app/components/workflow/nodes/_base/hooks/use-one-step-run'
@@ -80,6 +80,13 @@ const useConfig = (id: string, payload: HttpNodeType) => {
     setInputs(newInputs)
   }, [inputs, setInputs])
 
+  const setTimeout = useCallback((timeout: Timeout) => {
+    const newInputs = produce(inputs, (draft: HttpNodeType) => {
+      draft.timeout = timeout
+    })
+    setInputs(newInputs)
+  }, [inputs, setInputs])
+
   const filterVar = useCallback((varPayload: Var) => {
     return [VarType.string, VarType.number].includes(varPayload.type)
   }, [])
@@ -148,6 +155,8 @@ const useConfig = (id: string, payload: HttpNodeType) => {
     showAuthorization,
     hideAuthorization,
     setAuthorization,
+    // timeout
+    setTimeout,
     // single run
     isShowSingleRun,
     hideSingleRun,
